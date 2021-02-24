@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>LeapApp</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+</head>
+<body>
+	<div id="root" class="text-center">
+			<h2 class="lead">Are we in a leap year</h2>
+			<h1 id="answer" class="display-2" >No</h1>
+			<br>
+			<h3 id="wording" class="lead">2021 is not a leap year</h3>
+			<h3 id="next" class="lead"></h3>
+	</div>
+	<script type="text/javascript">
+
+
+		function isleap(year){
+			var leap=false;
+			if(year%100==0){
+				if(year%400==0){
+					leap=true;
+				}
+				else{
+					leap=false;
+				}
+			}
+			else{
+				if(year%4==0){
+					leap=true;
+				}
+				else{
+					leap=false;
+				}
+			}
+			return leap;
+		}
+
+
+
+		function nextleap(){
+			var d = new Date();
+			var year = d.getFullYear();
+			next=0;
+			for (var i = year+1; i<(year+5); i++) {
+				if(isleap(i)){
+					next=i;
+					break;
+				}
+			}
+			return next;
+		}
+		function answer(){
+			var d = new Date();
+			var year = d.getFullYear();
+			//var year=20;
+			var leap=isleap(year);
+			var next=nextleap();
+
+			if(leap==true){
+				document.getElementById("answer").innerHTML="Yes";
+				document.getElementById("wording").innerHTML=year+" IS a leap year";
+			}
+			else{
+				document.getElementById("answer").innerHTML="No";
+				document.getElementById("wording").innerHTML=year+" IS NOT a leap year";
+
+			}
+			document.getElementById("next").innerHTML="Next leap year: "+next;
+
+		}
+
+	answer();
+
+	</script>
+	<style type="text/css">
+		#root{
+			width: 80%;
+			margin-right: 10%;
+			margin-left:10%;
+			margin-top: 30%;
+		}
+
+	</style>
+</body>
+</html>
